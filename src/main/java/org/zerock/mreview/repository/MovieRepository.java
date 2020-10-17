@@ -7,10 +7,11 @@ import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.zerock.mreview.entity.Movie;
+import org.zerock.mreview.repository.search.SearchMovieRepository;
 
 import java.util.List;
 
-public interface MovieRepository extends JpaRepository<Movie, Long> {
+public interface MovieRepository extends JpaRepository<Movie, Long>, SearchMovieRepository {
 
 
 //    @Query("select m, avg(coalesce(r.grade,0)),  count(r) from Movie m " +
