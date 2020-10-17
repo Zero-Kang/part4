@@ -3,6 +3,9 @@ package org.zerock.mreview.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import org.zerock.mreview.entity.Member;
@@ -62,4 +65,16 @@ public class ReviewRepositoryTests {
         });
     }
 
+    @Test
+    public void testReviewPaging() {
+        PageRequest pageRequest = PageRequest.of(0,10, Sort.by(Sort.Direction.ASC, "reviewnum"));
+
+        Page<Review> result = reviewRepository.findAll(pageRequest);
+
+        result.getContent().forEach(review -> System.out.println(review));
+
+    }
+
 }
+
+
